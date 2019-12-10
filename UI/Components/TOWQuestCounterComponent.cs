@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using System.Xml;
 
 namespace LiveSplit.UI.Components
@@ -25,6 +26,7 @@ namespace LiveSplit.UI.Components
 
         private LiveSplitState _state;
         private int _count;
+        private int HookState = 0; //0 not hooked, 1 is hooking, 2 is hooked
 
         private Process Game;
         private DeepPointer QuestOffset, FoundationOffset;
@@ -143,35 +145,45 @@ namespace LiveSplit.UI.Components
 
             if (GameProcesses.Count > 0)
             {
-                if (Game == null)
+                if (HookState == 0)
                 {
-                    Thread.Sleep(2500);
-                    Game = GameProcesses.First();
-                    string version = "";
-                    switch (Game.MainModule.ModuleMemorySize)
+                    HookState = 1;
+                    DispatcherTimer delay = new DispatcherTimer();
+                    delay.Interval = TimeSpan.FromSeconds(5);
+                    delay.Tick += (s, e) =>
                     {
-                        case 71692288:
-                            version = "v1.0 (EGS)";
-                            QuestOffset = new DeepPointer(0x03D9C7F8, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                            FoundationOffset = new DeepPointer(0x03FF7408, 0xDD8, 0x1A0, 0x1E8, 0x290);
-                            break;
-                        case 71729152:
-                            version = "v1.1 (EGS)";
-                            QuestOffset = new DeepPointer(0x03DA3978, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                            FoundationOffset = new DeepPointer(0x03FFE788, 0xDD8, 0x1A0, 0x1E8, 0x290);
-                            break;
-                        case 74125312:
-                            version = "v1.1 (MS)";
-                            QuestOffset = new DeepPointer(0x03FF0078, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                            FoundationOffset = new DeepPointer(0x0424AD78, 0xDD8, 0x1A0, 0x1E8, 0x290);
-                            break;
-                    }
-                    Debug.WriteLine($"TOW {version} found.");
-                    while (!QuestOffset.Deref<ulong>(Game, out QuestBase)) ;
-                    FoundationOffset.Deref<ulong>(Game, out FoundationBase);
-                    Debug.WriteLine("Found Quest Offsets");
+                        Game = GameProcesses.First();
+                        string version = "";
+                        switch (Game.MainModule.ModuleMemorySize)
+                        {
+                            case 71692288:
+                                version = "v1.0 (EGS)";
+                                QuestOffset = new DeepPointer(0x03D9C7F8, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
+                                FoundationOffset = new DeepPointer(0x03FF7408, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                break;
+                            case 71729152:
+                                version = "v1.1 (EGS)";
+                                QuestOffset = new DeepPointer(0x03DA3978, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
+                                FoundationOffset = new DeepPointer(0x03FFE788, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                break;
+                            case 74125312:
+                                version = "v1.1 (MS)";
+                                QuestOffset = new DeepPointer(0x03FF0078, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
+                                FoundationOffset = new DeepPointer(0x0424AD78, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                break;
+                        }
+                        Debug.WriteLine($"TOW {version} found.");
+                        while (!QuestOffset.Deref<ulong>(Game, out QuestBase)) ;
+                        FoundationOffset.Deref<ulong>(Game, out FoundationBase);
+                        Debug.WriteLine("Found Quest Offsets");
+
+                        HookState = 2;
+                        delay.Stop();
+                    };
+                    delay.Start();
                 }
-                else
+                
+                if (HookState == 2)
                 {
                     for (int i = 0; i < Quests.Count; i++)
                     {
@@ -198,6 +210,7 @@ namespace LiveSplit.UI.Components
             else
             {
                 Game = null;
+                HookState = 0;
             }
 
             if (invalidator != null && this.InternalComponent.InformationValue != _count.ToString())
