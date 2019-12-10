@@ -26,6 +26,7 @@ namespace LiveSplit.UI.Components
         private LiveSplitState _state;
         private int _count;
         private bool IsHooked = false;
+        private int UpdateTime = 0;
 
         private Process Game;
         private DeepPointer QuestOffset, FoundationOffset;
@@ -140,68 +141,74 @@ namespace LiveSplit.UI.Components
 
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
-            List<Process> GameProcesses = Process.GetProcesses().ToList().FindAll(x => x.ProcessName.StartsWith("Indiana"));
+            UpdateTime++;
 
-            if (GameProcesses.Count > 0)
+            if (UpdateTime > 30)
             {
-                if (!IsHooked)
+                UpdateTime = 0;
+                List<Process> GameProcesses = Process.GetProcesses().ToList().FindAll(x => x.ProcessName.StartsWith("Indiana"));
+
+                if (GameProcesses.Count > 0)
                 {
-                    Game = GameProcesses.First();
-                    string version = "";
-                    switch (Game.MainModule.ModuleMemorySize)
+                    if (!IsHooked)
                     {
-                        case 71692288:
-                            version = "v1.0 (EGS)";
-                            QuestOffset = new DeepPointer(0x03D9C7F8, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                            FoundationOffset = new DeepPointer(0x03FF7408, 0xDD8, 0x1A0, 0x1E8, 0x290);
-                            break;
-                        case 71729152:
-                            version = "v1.1 (EGS)";
-                            QuestOffset = new DeepPointer(0x03DA3978, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                            FoundationOffset = new DeepPointer(0x03FFE788, 0xDD8, 0x1A0, 0x1E8, 0x290);
-                            break;
-                        case 74125312:
-                            version = "v1.1 (MS)";
-                            QuestOffset = new DeepPointer(0x03FF0078, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                            FoundationOffset = new DeepPointer(0x0424AD78, 0xDD8, 0x1A0, 0x1E8, 0x290);
-                            break;
+                        Game = GameProcesses.First();
+                        string version = "";
+                        switch (Game.MainModule.ModuleMemorySize)
+                        {
+                            case 71692288:
+                                version = "v1.0 (EGS)";
+                                QuestOffset = new DeepPointer(0x03D9C7F8, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
+                                FoundationOffset = new DeepPointer(0x03FF7408, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                break;
+                            case 71729152:
+                                version = "v1.1 (EGS)";
+                                QuestOffset = new DeepPointer(0x03DA3978, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
+                                FoundationOffset = new DeepPointer(0x03FFE788, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                break;
+                            case 74125312:
+                                version = "v1.1 (MS)";
+                                QuestOffset = new DeepPointer(0x03FF0078, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
+                                FoundationOffset = new DeepPointer(0x0424AD78, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                break;
+                        }
+                        IsHooked = QuestOffset.Deref<ulong>(Game, out QuestBase);
+                        FoundationOffset.Deref<ulong>(Game, out FoundationBase);
+                        if (IsHooked)
+                        {
+                            Debug.WriteLine($"TOW {version} found.");
+                            Debug.WriteLine("Found Quest Offsets");
+                        }
                     }
-                    IsHooked = QuestOffset.Deref<ulong>(Game, out QuestBase);
-                    FoundationOffset.Deref<ulong>(Game, out FoundationBase);
-                    if (IsHooked)
+                    else
                     {
-                        Debug.WriteLine($"TOW {version} found.");
-                        Debug.WriteLine("Found Quest Offsets");
+                        for (int i = 0; i < Quests.Count; i++)
+                        {
+                            if (Quests[i].Name == "foundation")
+                            {
+                                int QuestState;
+                                Game.ReadValue<int>((IntPtr)(FoundationBase + Quests[i].Offset), out QuestState);
+                                bool Completed = QuestState >= Quests[i].CompletionState;
+                                Quests[i].Completed = Completed;
+                            }
+                            else
+                            {
+                                int QuestState;
+                                Game.ReadValue<int>((IntPtr)(QuestBase + Quests[i].Offset), out QuestState);
+                                bool Completed = QuestState >= Quests[i].CompletionState;
+                                Quests[i].Completed = Completed;
+                            }
+                            //Debug.WriteLine($"{Quests[i].Name} = {Quests[i].Completed}");
+                        }
+
+                        _count = Quests.FindAll(x => x.Completed == true).Count;
                     }
                 }
                 else
                 {
-                    for (int i = 0; i < Quests.Count; i++)
-                    {
-                        if (Quests[i].Name == "foundation")
-                        {
-                            int QuestState;
-                            Game.ReadValue<int>((IntPtr)(FoundationBase + Quests[i].Offset), out QuestState);
-                            bool Completed = QuestState >= Quests[i].CompletionState;
-                            Quests[i].Completed = Completed;
-                        }
-                        else
-                        {
-                            int QuestState;
-                            Game.ReadValue<int>((IntPtr)(QuestBase + Quests[i].Offset), out QuestState);
-                            bool Completed = QuestState >= Quests[i].CompletionState;
-                            Quests[i].Completed = Completed;
-                        }
-                        //Debug.WriteLine($"{Quests[i].Name} = {Quests[i].Completed}");
-                    }
-
-                    _count = Quests.FindAll(x => x.Completed == true).Count;
+                    Game = null;
+                    IsHooked = false;
                 }
-            }
-            else
-            {
-                Game = null;
-                IsHooked = false;
             }
 
             if (invalidator != null && this.InternalComponent.InformationValue != _count.ToString())
