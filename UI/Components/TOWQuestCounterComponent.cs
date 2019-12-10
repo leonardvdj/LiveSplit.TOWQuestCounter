@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -142,8 +143,9 @@ namespace LiveSplit.UI.Components
 
             if (GameProcesses.Count > 0)
             {
-                if (Game == null || Game.HasExited)
+                if (Game == null)
                 {
+                    Thread.Sleep(2500);
                     Game = GameProcesses.First();
                     string version = "";
                     switch (Game.MainModule.ModuleMemorySize)
@@ -167,9 +169,9 @@ namespace LiveSplit.UI.Components
                     Debug.WriteLine($"TOW {version} found.");
                     while (!QuestOffset.Deref<ulong>(Game, out QuestBase)) ;
                     FoundationOffset.Deref<ulong>(Game, out FoundationBase);
+                    Debug.WriteLine("Found Quest Offsets");
                 }
-
-                if (Game != null)
+                else
                 {
                     for (int i = 0; i < Quests.Count; i++)
                     {
@@ -192,6 +194,10 @@ namespace LiveSplit.UI.Components
 
                     _count = Quests.FindAll(x => x.Completed == true).Count;
                 }
+            }
+            else
+            {
+                Game = null;
             }
 
             if (invalidator != null && this.InternalComponent.InformationValue != _count.ToString())
