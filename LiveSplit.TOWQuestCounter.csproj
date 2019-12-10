@@ -56,8 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Components\Manager.cs" />
-    <Compile Include="UI\Components\Memory.cs" />
+    <Compile Include="UI\Components\Quest.cs" />
     <Compile Include="UI\Components\TOWQuestCounterComponent.cs" />
     <Compile Include="UI\Components\TOWQuestCounterComponentFactory.cs" />
   </ItemGroup>

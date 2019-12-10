@@ -15,7 +15,6 @@ D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\bin\D
 D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\bin\Debug\LiveSplit.Core.dll.config
 D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\bin\Debug\Codaxy.Xlio.XmlSerializers.dll
 D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\obj\Debug\LiveSplit.TOWQuestCounter.csprojAssemblyReference.cache
-D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\obj\Debug\LiveSplit.TOWQuestCounter.csproj.CoreCompileInputs.cache
 D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\obj\Debug\LiveSplit.TOWQuestCounter.csproj.CopyComplete
 D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\obj\Debug\LiveSplit.TOWQuestCounter.dll
 D:\Files\Coding\VS2017\LiveSplit.TOWQuestCounter\LiveSplit.TOWQuestCounter\obj\Debug\LiveSplit.TOWQuestCounter.pdb
