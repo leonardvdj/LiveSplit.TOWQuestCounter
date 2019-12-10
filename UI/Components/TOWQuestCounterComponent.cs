@@ -142,15 +142,18 @@ namespace LiveSplit.UI.Components
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
             UpdateTime++;
-
             if (UpdateTime > 30)
             {
                 UpdateTime = 0;
-                List<Process> GameProcesses = Process.GetProcesses().ToList().FindAll(x => x.ProcessName.StartsWith("Indiana"));
-
-                if (GameProcesses.Count > 0)
+                if (Game != null && Game.HasExited)
                 {
-                    if (!IsHooked)
+                    Game = null;
+                    IsHooked = false;
+                }
+                if (!IsHooked)
+                {
+                    List<Process> GameProcesses = Process.GetProcesses().ToList().FindAll(x => x.ProcessName.StartsWith("Indiana"));
+                    if (GameProcesses.Count > 0)
                     {
                         Game = GameProcesses.First();
                         string version = "";
@@ -180,34 +183,29 @@ namespace LiveSplit.UI.Components
                             Debug.WriteLine("Found Quest Offsets");
                         }
                     }
-                    else
-                    {
-                        for (int i = 0; i < Quests.Count; i++)
-                        {
-                            if (Quests[i].Name == "foundation")
-                            {
-                                int QuestState;
-                                Game.ReadValue<int>((IntPtr)(FoundationBase + Quests[i].Offset), out QuestState);
-                                bool Completed = QuestState >= Quests[i].CompletionState;
-                                Quests[i].Completed = Completed;
-                            }
-                            else
-                            {
-                                int QuestState;
-                                Game.ReadValue<int>((IntPtr)(QuestBase + Quests[i].Offset), out QuestState);
-                                bool Completed = QuestState >= Quests[i].CompletionState;
-                                Quests[i].Completed = Completed;
-                            }
-                            //Debug.WriteLine($"{Quests[i].Name} = {Quests[i].Completed}");
-                        }
-
-                        _count = Quests.FindAll(x => x.Completed == true).Count;
-                    }
                 }
                 else
                 {
-                    Game = null;
-                    IsHooked = false;
+                    for (int i = 0; i < Quests.Count; i++)
+                    {
+                        if (Quests[i].Name == "foundation")
+                        {
+                            int QuestState;
+                            Game.ReadValue<int>((IntPtr)(FoundationBase + Quests[i].Offset), out QuestState);
+                            bool Completed = QuestState >= Quests[i].CompletionState;
+                            Quests[i].Completed = Completed;
+                        }
+                        else
+                        {
+                            int QuestState;
+                            Game.ReadValue<int>((IntPtr)(QuestBase + Quests[i].Offset), out QuestState);
+                            bool Completed = QuestState >= Quests[i].CompletionState;
+                            Quests[i].Completed = Completed;
+                        }
+                        //Debug.WriteLine($"{Quests[i].Name} = {Quests[i].Completed}");
+                    }
+
+                    _count = Quests.FindAll(x => x.Completed == true).Count;
                 }
             }
 
