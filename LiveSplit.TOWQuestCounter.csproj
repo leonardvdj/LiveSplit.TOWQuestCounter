@@ -50,7 +50,6 @@
     <Reference Include="UpdateManager">
       <HintPath>..\..\..\..\..\Programs\LiveSplit\UpdateManager.dll</HintPath>
     </Reference>
-    <Reference Include="WindowsBase" />
     <Reference Include="WinFormsColor">
       <HintPath>..\..\..\..\..\Programs\LiveSplit\WinFormsColor.dll</HintPath>
     </Reference>
