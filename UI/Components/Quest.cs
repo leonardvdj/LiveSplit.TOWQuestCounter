@@ -41,8 +41,16 @@ namespace LiveSplit.UI.Components
         public const int LESS_THAN_OR_EQUAL = 5;
         public Comparison(int _completionState, int _comparator)
         {
-            CompletionState = _completionState;
-            Comparator = _comparator;
+            if (_comparator == EQUALS || _comparator == NOT_EQUALS)
+            {
+                CompletionStates = new int[] { _completionState };
+                Comparator = _comparator;
+            }
+            else
+            {
+                CompletionState = _completionState;
+                Comparator = _comparator;
+            }
         }
         public Comparison(int[] _completionStates, int _comparator)
         {
