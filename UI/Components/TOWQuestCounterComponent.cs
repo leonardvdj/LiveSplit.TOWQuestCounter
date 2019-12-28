@@ -5,9 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -29,102 +26,9 @@ namespace LiveSplit.UI.Components
         private int UpdateTime = 0;
 
         private Process Game;
-        private DeepPointer QuestOffset, FoundationOffset;
-        private ulong QuestBase, FoundationBase;
+        private int QuestOffset, FoundationOffset;
 
-        private List<Quest> Quests = new List<Quest>()
-        {
-            //Emerald Vale
-            new Quest() { Offset =  0x14A90,    Name = "frightened_engineer",       CompletionState = 3 },
-            new Quest() { Offset =  0xBBF0,     Name = "kindred_spirits",           CompletionState = 1 },
-            new Quest() { Offset =  0x94F0,     Name = "fistful_digits",            CompletionState = 3 },
-            new Quest() { Offset =  0xB3D0,     Name = "small_grave_matter",        CompletionState = 1 },
-            new Quest() { Offset =  0x9F10,     Name = "die_robot",                 CompletionState = 1 },
-            new Quest() { Offset =  0xA770,     Name = "long_tomorrow",             CompletionState = 3 },
-            new Quest() { Offset =  0x4130,     Name = "illustrated_journal",       CompletionState = 1 },
-            new Quest() { Offset =  0x7310,     Name = "comes_now_power",           CompletionState = 1 },
-            new Quest() { Offset =  0xE3D0,     Name = "stranger_strange_land",     CompletionState = 1 },
-
-            //Groundbeaker
-            new Quest() { Offset =  0x14D0,     Name = "passage_anywhere",          CompletionState = 1 },
-            new Quest() { Offset =  0x11DD0,    Name = "balance_due",               CompletionState = 2 },
-            new Quest() { Offset =  0x2230,     Name = "puppet_masters",            CompletionState = 1 },
-            new Quest() { Offset =  0xF5B0,     Name = "distress_signal",           CompletionState = 5 },
-            new Quest() { Offset =  0x10A90,    Name = "warm_spaceship",            CompletionState = 1 },
-            new Quest() { Offset =  0x9490,     Name = "solution_vial",             CompletionState = 6 },
-            new Quest() { Offset =  0x65F0,     Name = "doom_to_roseway",           CompletionState = 4 },
-            new Quest() { Offset =  0xC310,     Name = "silent_voices",             CompletionState = 5 },
-            new Quest() { Offset =  0x101D0,    Name = "who_goes_there",            CompletionState = 3 },
-            new Quest() { Offset =  0xBF30,     Name = "worst_contact",             CompletionState = 4 },
-            new Quest() { Offset =  0xF350,     Name = "space_crime_continuum",     CompletionState = 7 },
-            new Quest() { Offset =  0xF350,     Name = "ice_palace",                CompletionState = 10 },
-            new Quest() { Offset =  0xB4D0,     Name = "chimerists_experiment",     CompletionState = 4 },
-            new Quest() { Offset =  0x11F10,    Name = "salvager_in_sky",           CompletionState = 1 },
-            new Quest() { Offset =  0x13550,    Name = "sapphire_wine",             CompletionState = 3 },
-            new Quest() { Offset =  0x8370,     Name = "bite_the_sun",              CompletionState = 6 },
-
-            //Roseway
-            new Quest() { Offset =  0x6A50,     Name = "by_his_bootstraps",         CompletionState = 5 },
-            new Quest() { Offset =  0x6B50,     Name = "vulcans_hammer",            CompletionState = 4 },
-            new Quest() { Offset =  0x69D0,     Name = "amateur_alchemist",         CompletionState = 5 },
-            new Quest() { Offset =  0x6970,     Name = "journey_into_smoke",        CompletionState = 4 },
-
-            //Byzantium
-            new Quest() { Offset =  0x13D10,    Name = "demolished_woman",          CompletionState = 1 },
-            new Quest() { Offset =  0x490,      Name = "long_distance",             CompletionState = 1 },
-            new Quest() { Offset =  0x11330,    Name = "signal_point",              CompletionState = 20 },
-            new Quest() { Offset =  0x710,      Name = "foundation",                CompletionState = 31 },
-            new Quest() { Offset =  0xF970,     Name = "secret_not_forgotten",      CompletionState = 7 },
-            new Quest() { Offset =  0x117B0,    Name = "at_central",                CompletionState = 40 },
-            new Quest() { Offset =  0x5170,     Name = "back_from_retirement",      CompletionState = 40 },
-            new Quest() { Offset =  0xBF10,     Name = "low_crusade",               CompletionState = 5 },
-            new Quest() { Offset =  0x142F0,    Name = "space_suits_wont_travel",   CompletionState = 70 },
-            new Quest() { Offset =  0x4710,     Name = "cupid_laboratory",          CompletionState = 1 },
-            new Quest() { Offset =  0x10310,    Name = "all_halcyon_day",           CompletionState = 1 },
-            new Quest() { Offset =  0x12D10,    Name = "lying_earth",               CompletionState = 1 },
-
-            //Scylla
-            new Quest() { Offset =  0xAF70,     Name = "friendships_due",           CompletionState = 6 },
-            new Quest() { Offset =  0x136D0,    Name = "weapons_from_void",         CompletionState = 5 },
-            new Quest() { Offset =  0xB7B0,     Name = "empty_man",                 CompletionState = 10 },
-
-            //The Unreliable
-            new Quest() { Offset =  0x41F0,     Name = "cleaning_machine",          CompletionState = 1 },
-
-            //Stellar Bay
-            new Quest() { Offset =  0x11310,    Name = "radio_free_monarch",        CompletionState = 25 },
-            new Quest() { Offset =  0x104F0,    Name = "family_matter",             CompletionState = 5 },
-            new Quest() { Offset =  0xC5D0,     Name = "herricks_handiwork",        CompletionState = 6 },
-            new Quest() { Offset =  0x14010,    Name = "passion_pills",             CompletionState = 1 },
-            new Quest() { Offset =  0x6F70,     Name = "grimm_tomorrow",            CompletionState = 1 },
-            new Quest() { Offset =  0xED30,     Name = "secret_people",             CompletionState = 8 },
-            new Quest() { Offset =  0x14750,    Name = "stainless_steel_rat",       CompletionState = 8 },
-            new Quest() { Offset =  0x112B0,    Name = "bolt_with_his_name",        CompletionState = 25 },
-            new Quest() { Offset =  0x112F0,    Name = "errors_unseen",             CompletionState = 25 },
-            new Quest() { Offset =  0x11CF0,    Name = "flowers_for_sebastian",     CompletionState = 1 },
-            new Quest() { Offset =  0xD7F0,     Name = "picketts_biggest_game",     CompletionState = 4 },
-            new Quest() { Offset =  0x3F0,      Name = "star_crossed_troopers",     CompletionState = 1 },
-            new Quest() { Offset =  0x10D70,    Name = "mandibles_of_doom",         CompletionState = 12 },
-            new Quest() { Offset =  0x9690,     Name = "canids_cradle",             CompletionState = 50 },
-
-            //Amber Heights
-            new Quest() { Offset =  0xA190,     Name = "little_memento",            CompletionState = 1 },
-            new Quest() { Offset =  0x11290,    Name = "the_commuter",              CompletionState = 25 },
-            new Quest() { Offset =  0x17B0,     Name = "pay_for_printer",           CompletionState = 40 },
-            new Quest() { Offset =  0x76F0,     Name = "odd_jobs",                  CompletionState = 4 },
-            new Quest() { Offset =  0x41D0,     Name = "sucker_bait",               CompletionState = 50 },
-
-            //Fallbrook
-            new Quest() { Offset =  0xC9B0,     Name = "slaughterhouse_clive",      CompletionState = 40 },
-            new Quest() { Offset =  0x6E70,     Name = "spratkings",                CompletionState = 4 },
-
-            //Phineas' Lab
-            new Quest() { Offset =  0xFDF0,     Name = "city_and_stars",            CompletionState = 1 },
-            new Quest() { Offset =  0xE8B0,     Name = "brave_new_world",           CompletionState = 2 },
-            
-            //C&P Boarst Factory
-            new Quest() { Offset =  0xC9F0,     Name = "cysty_dance",               CompletionState = 20 }
-        };
+        private List<Quest> Quests;
 
         public TOWQuestCounterComponent(LiveSplitState state)
         {
@@ -161,26 +65,526 @@ namespace LiveSplit.UI.Components
                         {
                             case 71692288:
                                 version = "v1.0 (EGS)";
-                                QuestOffset = new DeepPointer(0x03D9C7F8, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                                FoundationOffset = new DeepPointer(0x03FF7408, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                QuestOffset = 0x03D9C7F8;
+                                FoundationOffset = 0x03FF7408;
                                 break;
                             case 71729152:
                                 version = "v1.1 (EGS)";
-                                QuestOffset = new DeepPointer(0x03DA3978, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                                FoundationOffset = new DeepPointer(0x03FFE788, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                QuestOffset = 0x03DA3978;
+                                FoundationOffset = 0x03FFE788;
+                                break;
+                            case 71880704:
+                                version = "v1.2 (EGS)";
                                 break;
                             case 74125312:
                                 version = "v1.1 (MS)";
-                                QuestOffset = new DeepPointer(0x03FF0078, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0);
-                                FoundationOffset = new DeepPointer(0x0424AD78, 0xDD8, 0x1A0, 0x1E8, 0x290);
+                                QuestOffset = 0x03FF0078;
+                                FoundationOffset = 0x0424AD78;
                                 break;
                         }
-                        IsHooked = QuestOffset.Deref<ulong>(Game, out QuestBase);
-                        FoundationOffset.Deref<ulong>(Game, out FoundationBase);
+                        IsHooked = new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0).Deref<ulong>(Game, out var ignore);
                         if (IsHooked)
                         {
                             Debug.WriteLine($"TOW {version} found.");
                             Debug.WriteLine("Found Quest Offsets");
+
+                            Quests = new List<Quest>()
+                            {
+                                //Emerald Vale
+                                new Quest("frightened_engineer",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14A90),
+                                            new Comparison[] {
+                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("kindred_spirits",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xBBF0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("fistful_digits",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x94F0),
+                                            new Comparison[] {
+                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("small_grave_matter",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xB3D0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("die_robot",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x9F10),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("long_tomorrow",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xA770),
+                                            new Comparison[] {
+                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("illustrated_journal",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x4130),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("comes_now_power",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x7310),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("stranger_strange_land",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xE3D0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Groundbreaker
+                                new Quest("passage_anywhere",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14D0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("balance_due",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11DD0),
+                                            new Comparison[] {
+                                                new Comparison(2, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("puppet_masters",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x2230),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("distress_signal",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xF5B0),
+                                            new Comparison[] {
+                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("warm_spaceship",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x10A90),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("solution_vial",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x9490),
+                                            new Comparison[] {
+                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("doom_to_roseway",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x65F0),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("silent_voices",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC310),
+                                            new Comparison[] {
+                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("who_goes_there",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x101D0),
+                                            new Comparison[] {
+                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("worst_contact",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xBF30),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("space_crime_continuum",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xF350),
+                                            new Comparison[] {
+                                                new Comparison(7, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("ice_palace",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xF350),
+                                            new Comparison[] {
+                                                new Comparison(10, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("chimerists_experiment",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xB4D0),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("salvager_in_sky",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11F10),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("sapphire_wine",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x13550),
+                                            new Comparison[] {
+                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("bite_the_sun",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x8370),
+                                            new Comparison[] {
+                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Roseway
+                                new Quest("by_his_bootstraps",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6A50),
+                                            new Comparison[] {
+                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("vulcans_hammer",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6B50),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("amateur_alchemist",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x69D0),
+                                            new Comparison[] {
+                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("journey_into_smoke",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6970),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Byzantium
+                                new Quest("demolished_woman",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x13D10),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("long_distance",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x490),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("signal_point",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11330),
+                                            new Comparison[] {
+                                                new Comparison(20, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("foundation",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(FoundationOffset, 0xDD8, 0x1A0, 0x1E8, 0x290, 0x710),
+                                            new Comparison[] {
+                                                new Comparison(31, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("secret_not_forgotten",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xF970),
+                                            new Comparison[] {
+                                                new Comparison(7, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("at_central",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x117B0),
+                                            new Comparison[] {
+                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("back_from_retirement",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x5170),
+                                            new Comparison[] {
+                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("low_crusade",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xBF10),
+                                            new Comparison[] {
+                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("space_suits_wont_travel",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x142F0),
+                                            new Comparison[] {
+                                                new Comparison(70, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("cupid_laboratory",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x4710),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("all_halcyon_day",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x10310),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("lying_earth",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x12D10),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Scylla
+                                new Quest("friendships_due",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xAF70),
+                                            new Comparison[] {
+                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("weapons_from_void",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x136D0),
+                                            new Comparison[] {
+                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("empty_man",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xB7B0),
+                                            new Comparison[] {
+                                                new Comparison(10, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //The Unreliable
+                                new Quest("cleaning_machine",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x41F0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Stellar Bay
+                                new Quest("radio_free_monarch",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11310),
+                                            new Comparison[] {
+                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("family_matter",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x104F0),
+                                            new Comparison[] {
+                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("herricks_handiwork",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC5D0),
+                                            new Comparison[] {
+                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("passion_pills",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14010),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("grimm_tomorrow",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6F70),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("secret_people",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xED30),
+                                            new Comparison[] {
+                                                new Comparison(8, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("stainless_steel_rat",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14750),
+                                            new Comparison[] {
+                                                new Comparison(8, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("bolt_with_his_name",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x112B0),
+                                            new Comparison[] {
+                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("errors_unseen",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x112F0),
+                                            new Comparison[] {
+                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("flowers_for_sebastian",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11CF0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("picketts_biggest_game",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xD7F0),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("star_crossed_troopers",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x3F0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("mandibles_of_doom",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x10D70),
+                                            new Comparison[] {
+                                                new Comparison(12, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("canids_cradle",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x9690),
+                                            new Comparison[] {
+                                                new Comparison(50, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Amber Heights
+                                new Quest("little_memento",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xA190),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("the_commuter",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11290),
+                                            new Comparison[] {
+                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("pay_for_printer",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x17B0),
+                                            new Comparison[] {
+                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("odd_jobs",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x76F0),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("sucker_bait",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x41D0),
+                                            new Comparison[] {
+                                                new Comparison(50, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Fallbrook
+                                new Quest("slaughterhouse_clive",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC9B0),
+                                            new Comparison[] {
+                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("spratkings",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6E70),
+                                            new Comparison[] {
+                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //Phineas' Lab
+                                new Quest("city_and_stars",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xFDF0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                new Quest("brave_new_world",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xE8B0),
+                                            new Comparison[] {
+                                                new Comparison(2, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                                //C&P Boarst Factory
+                                new Quest("cysty_dance",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC9F0),
+                                            new Comparison[] {
+                                                new Comparison(20, Comparison.GREATER_THAN_OR_EQUAL)
+                                            })
+                                    }),
+                            };
                         }
                     }
                 }
@@ -188,21 +592,44 @@ namespace LiveSplit.UI.Components
                 {
                     for (int i = 0; i < Quests.Count; i++)
                     {
-                        if (Quests[i].Name == "foundation")
+                        for (int x = 0; x < Quests[i].Pointers.Length; x++)
                         {
-                            int QuestState;
-                            Game.ReadValue<int>((IntPtr)(FoundationBase + Quests[i].Offset), out QuestState);
-                            bool Completed = QuestState >= Quests[i].CompletionState;
-                            Quests[i].Completed = Completed;
+                            int completionState = 0;
+                            Quests[i].Pointers[x].Pointer.Deref<int>(Game, out completionState);
+                            for (int z = 0; z < Quests[i].Pointers[x].Comparisons.Length; z++)
+                            {
+                                Quests[i].Pointers[x].Comparisons[z].Completed = true;
+                                switch (Quests[i].Pointers[x].Comparisons[z].Comparator)
+                                {
+                                    case Comparison.EQUALS:
+                                        if (!Quests[i].Pointers[x].Comparisons[z].CompletionStates.Contains(completionState))
+                                            Quests[i].Pointers[x].Comparisons[z].Completed = false;
+                                        break;
+                                    case Comparison.NOT_EQUALS:
+                                        if (Quests[i].Pointers[x].Comparisons[z].CompletionStates.Contains(completionState))
+                                            Quests[i].Pointers[x].Comparisons[z].Completed = false;
+                                        break;
+                                    case Comparison.GREATER_THAN:
+                                        if (!(completionState > Quests[i].Pointers[x].Comparisons[z].CompletionState))
+                                            Quests[i].Pointers[x].Comparisons[z].Completed = false;
+                                        break;
+                                    case Comparison.GREATER_THAN_OR_EQUAL:
+                                        if (!(completionState >= Quests[i].Pointers[x].Comparisons[z].CompletionState))
+                                            Quests[i].Pointers[x].Comparisons[z].Completed = false;
+                                        break;
+                                    case Comparison.LESS_THAN:
+                                        if (!(completionState < Quests[i].Pointers[x].Comparisons[z].CompletionState))
+                                            Quests[i].Pointers[x].Comparisons[z].Completed = false;
+                                        break;
+                                    case Comparison.LESS_THAN_OR_EQUAL:
+                                        if (!(completionState <= Quests[i].Pointers[x].Comparisons[z].CompletionState))
+                                            Quests[i].Pointers[x].Comparisons[z].Completed = false;
+                                        break;
+                                }
+                            }
+                            Quests[i].Pointers[x].Completed = Array.FindAll(Quests[i].Pointers[x].Comparisons, k => k.Completed == true).Length == Quests[i].Pointers[x].Comparisons.Length;
                         }
-                        else
-                        {
-                            int QuestState;
-                            Game.ReadValue<int>((IntPtr)(QuestBase + Quests[i].Offset), out QuestState);
-                            bool Completed = QuestState >= Quests[i].CompletionState;
-                            Quests[i].Completed = Completed;
-                        }
-                        //Debug.WriteLine($"{Quests[i].Name} = {Quests[i].Completed}");
+                        Quests[i].Completed = Array.FindAll(Quests[i].Pointers, k => k.Completed == true).Length != 0;
                     }
 
                     _count = Quests.FindAll(x => x.Completed == true).Count;
