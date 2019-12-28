@@ -95,63 +95,63 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14A90),
                                             new Comparison[] {
-                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(3, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("kindred_spirits",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xBBF0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("fistful_digits",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x94F0),
                                             new Comparison[] {
-                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(3, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("small_grave_matter",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xB3D0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("die_robot",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x9F10),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("long_tomorrow",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xA770),
                                             new Comparison[] {
-                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(new int[] { 3, 4, 5 }, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("illustrated_journal",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x4130),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("comes_now_power",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x7310),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("stranger_strange_land",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xE3D0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 //Groundbreaker
@@ -159,70 +159,70 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14D0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("balance_due",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11DD0),
                                             new Comparison[] {
-                                                new Comparison(2, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(2, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("puppet_masters",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x2230),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("distress_signal",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xF5B0),
                                             new Comparison[] {
-                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(5, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("warm_spaceship",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x10A90),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("solution_vial",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x9490),
                                             new Comparison[] {
-                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(6, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("doom_to_roseway",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x65F0),
                                             new Comparison[] {
-                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(new int[] { 4, 6, 8 }, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("silent_voices",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC310),
                                             new Comparison[] {
-                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(5, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("who_goes_there",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x101D0),
                                             new Comparison[] {
-                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(3, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("worst_contact",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xBF30),
                                             new Comparison[] {
-                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(4, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("space_crime_continuum",
@@ -243,28 +243,28 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xB4D0),
                                             new Comparison[] {
-                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(new int[] { 4, 5 }, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("salvager_in_sky",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11F10),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("sapphire_wine",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x13550),
                                             new Comparison[] {
-                                                new Comparison(3, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(3, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("bite_the_sun",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x8370),
                                             new Comparison[] {
-                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(6, Comparison.EQUALS)
                                             })
                                     }),
                                 //Roseway
@@ -272,7 +272,7 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6A50),
                                             new Comparison[] {
-                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(new int[] { 5, 6 }, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("vulcans_hammer",
@@ -286,14 +286,14 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x69D0),
                                             new Comparison[] {
-                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(new int[] { 5, 6, 7, 8, 12 }, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("journey_into_smoke",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6970),
                                             new Comparison[] {
-                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(new int[] { 4, 5, 7, 10 }, Comparison.EQUALS)
                                             })
                                     }),
                                 //Byzantium
@@ -301,84 +301,84 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x13D10),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("long_distance",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x490),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("signal_point",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11330),
                                             new Comparison[] {
-                                                new Comparison(20, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(20, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("foundation",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(FoundationOffset, 0xDD8, 0x1A0, 0x1E8, 0x290, 0x710),
                                             new Comparison[] {
-                                                new Comparison(31, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(31, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("secret_not_forgotten",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xF970),
                                             new Comparison[] {
-                                                new Comparison(7, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(7, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("at_central",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x117B0),
                                             new Comparison[] {
-                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(40, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("back_from_retirement",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x5170),
                                             new Comparison[] {
-                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(40, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("low_crusade",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xBF10),
                                             new Comparison[] {
-                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(5, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("space_suits_wont_travel",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x142F0),
                                             new Comparison[] {
-                                                new Comparison(70, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(70, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("cupid_laboratory",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x4710),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("all_halcyon_day",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x10310),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("lying_earth",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x12D10),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 //Scylla
@@ -386,21 +386,21 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xAF70),
                                             new Comparison[] {
-                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(6, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("weapons_from_void",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x136D0),
                                             new Comparison[] {
-                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(5, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("empty_man",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xB7B0),
                                             new Comparison[] {
-                                                new Comparison(10, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(10, Comparison.EQUALS)
                                             })
                                     }),
                                 //The Unreliable
@@ -408,7 +408,7 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x41F0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 //Stellar Bay
@@ -416,98 +416,105 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11310),
                                             new Comparison[] {
-                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(25, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("family_matter",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x104F0),
                                             new Comparison[] {
-                                                new Comparison(5, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(5, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("herricks_handiwork",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC5D0),
                                             new Comparison[] {
-                                                new Comparison(6, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(6, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("passion_pills",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14010),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("grimm_tomorrow",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6F70),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("secret_people",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xED30),
                                             new Comparison[] {
-                                                new Comparison(8, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(8, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("stainless_steel_rat",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x14750),
                                             new Comparison[] {
-                                                new Comparison(8, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(8, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("bolt_with_his_name",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x112B0),
                                             new Comparison[] {
-                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(25, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("errors_unseen",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x112F0),
                                             new Comparison[] {
-                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(25, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("flowers_for_sebastian",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11CF0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("picketts_biggest_game",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xD7F0),
                                             new Comparison[] {
-                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(4, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("star_crossed_troopers",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x3F0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("mandibles_of_doom",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x10D70),
                                             new Comparison[] {
-                                                new Comparison(12, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(12, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("canids_cradle",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x9690),
                                             new Comparison[] {
-                                                new Comparison(50, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(50, Comparison.EQUALS)
+                                            })
+                                    }),
+                                new Quest("voyage_space_canid",
+                                    new MultiPointer[] {
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xE4D0),
+                                            new Comparison[] {
+                                                new Comparison(20, Comparison.EQUALS)
                                             })
                                     }),
                                 //Amber Heights
@@ -515,35 +522,35 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xA190),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("the_commuter",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x11290),
                                             new Comparison[] {
-                                                new Comparison(25, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(25, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("pay_for_printer",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x17B0),
                                             new Comparison[] {
-                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(40, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("odd_jobs",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x76F0),
                                             new Comparison[] {
-                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(4, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("sucker_bait",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x41D0),
                                             new Comparison[] {
-                                                new Comparison(50, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(50, Comparison.EQUALS)
                                             })
                                     }),
                                 //Fallbrook
@@ -551,14 +558,14 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC9B0),
                                             new Comparison[] {
-                                                new Comparison(40, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(40, Comparison.EQUALS)
                                             })
                                     }),
                                 new Quest("spratkings",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0x6E70),
                                             new Comparison[] {
-                                                new Comparison(4, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(4, Comparison.EQUALS)
                                             })
                                     }),
                                 //Phineas' Lab
@@ -566,14 +573,18 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xFDF0),
                                             new Comparison[] {
-                                                new Comparison(1, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(1, Comparison.EQUALS)
+                                            }),
+                                        new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xFBD0),
+                                            new Comparison[] {
+                                                new Comparison(1, Comparison.EQUALS)
                                             })
-                                    }),
+                                    }, true),
                                 new Quest("brave_new_world",
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xE8B0),
                                             new Comparison[] {
-                                                new Comparison(2, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(2, Comparison.EQUALS)
                                             })
                                     }),
                                 //C&P Boarst Factory
@@ -581,7 +592,7 @@ namespace LiveSplit.UI.Components
                                     new MultiPointer[] {
                                         new MultiPointer(new DeepPointer(QuestOffset, 0x20, 0x0, 0x8, 0x18, 0x8, 0x0, 0xC9F0),
                                             new Comparison[] {
-                                                new Comparison(20, Comparison.GREATER_THAN_OR_EQUAL)
+                                                new Comparison(20, Comparison.EQUALS)
                                             })
                                     }),
                             };
@@ -629,7 +640,7 @@ namespace LiveSplit.UI.Components
                             }
                             Quests[i].Pointers[x].Completed = Array.FindAll(Quests[i].Pointers[x].Comparisons, k => k.Completed == true).Length == Quests[i].Pointers[x].Comparisons.Length;
                         }
-                        Quests[i].Completed = Array.FindAll(Quests[i].Pointers, k => k.Completed == true).Length != 0;
+                        Quests[i].Completed = Quests[i].Both ? Array.FindAll(Quests[i].Pointers, k => k.Completed == true).Length == Quests[i].Pointers.Length : Array.FindAll(Quests[i].Pointers, k => k.Completed == true).Length != 0;
                     }
 
                     _count = Quests.FindAll(x => x.Completed == true).Count;

@@ -9,14 +9,16 @@ namespace LiveSplit.UI.Components
 {
     class Quest
     {
-        public Quest(string _name, MultiPointer[] _pointers)
+        public Quest(string _name, MultiPointer[] _pointers, bool _both = false)
         {
             Name = _name;
             Pointers = _pointers;
+            Both = _both;
         }
         public MultiPointer[] Pointers { get; set; }
         public string Name { get; set; }
         public bool Completed { get; set; }
+        public bool Both { get; set; }
     }
 
     class MultiPointer
